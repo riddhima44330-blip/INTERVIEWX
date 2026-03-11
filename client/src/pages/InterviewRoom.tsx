@@ -8,6 +8,8 @@ import { Mic, Square, ChevronRight, Loader2, CheckCircle } from 'lucide-react';
 const InterviewRoom = () => {
   const { domain } = useParams();
   const navigate = useNavigate();
+  const searchParams = new URLSearchParams(window.location.search);
+  const level = searchParams.get('level') || 'Intermediate';
   
   const [questions, setQuestions] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,12 +24,13 @@ const InterviewRoom = () => {
   useEffect(() => {
     const initInterview = async () => {
       try {
-        const { data: aiData } = await api.post('/ai/generate-questions', { domain });
-        const generatedQs = aiData.questions;
+        const { data } = await api.get(`/questions/domain/${domain}/level/${level}`);
+        const generatedQs = data.questions;
         setQuestions(generatedQs);
         
         const { data: interviewData } = await api.post('/interview/start', {
           domain,
+          level,
           questions: generatedQs,
         });
         setInterviewId(interviewData._id);
@@ -38,7 +41,7 @@ const InterviewRoom = () => {
       }
     };
     initInterview();
-  }, [domain]);
+  }, [domain, level]);
 
   useEffect(() => {
     let interval: any;

@@ -8,8 +8,11 @@ import DomainSelection from './pages/DomainSelection';
 import InterviewRoom from './pages/InterviewRoom';
 import Feedback from './pages/Feedback';
 import Analytics from './pages/Analytics';
+import SkillLevelSelection from './pages/SkillLevelSelection';
+import ResumeUpload from './pages/ResumeUpload';
+import ResumeAnalysis from './pages/ResumeAnalysis';
 
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuth();
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -60,6 +63,30 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Analytics />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/skill-level"
+        element={
+          <ProtectedRoute>
+            <SkillLevelSelection />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/resume-upload"
+        element={
+          <ProtectedRoute>
+            <ResumeUpload />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/resume-analysis"
+        element={
+          <ProtectedRoute>
+            <ResumeAnalysis />
           </ProtectedRoute>
         }
       />

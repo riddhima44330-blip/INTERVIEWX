@@ -8,6 +8,8 @@ import userRoutes from './routes/userRoutes';
 import interviewRoutes from './routes/interviewRoutes';
 import aiRoutes from './routes/aiRoutes';
 import leaderboardRoutes from './routes/leaderboardRoutes';
+import questionRoutes from './routes/questionRoutes';
+import resumeRoutes from './routes/resumeRoutes';
 
 dotenv.config();
 
@@ -27,6 +29,8 @@ app.use('/api/user', userRoutes);
 app.use('/api/interview', interviewRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
+app.use('/api/questions', questionRoutes);
+app.use('/api/resume', resumeRoutes);
 
 app.get('/', (req, res) => {
   res.send('InterviewX API is running...');

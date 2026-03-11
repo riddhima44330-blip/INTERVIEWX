@@ -8,6 +8,12 @@ export interface IUser extends Document {
   streak: number;
   badges: string[];
   level: number;
+  skillLevel?: string;
+  resumeData?: {
+    skills: string[];
+    technologies: string[];
+    experienceKeywords: string[];
+  };
   interviewHistory: mongoose.Types.ObjectId[];
   createdAt: Date;
 }
@@ -20,6 +26,12 @@ const UserSchema: Schema = new Schema({
   streak: { type: Number, default: 0 },
   badges: { type: [String], default: [] },
   level: { type: Number, default: 1 },
+  skillLevel: { type: String }, // e.g., 'Beginner', 'Intermediate', 'Advanced'
+  resumeData: {
+    skills: { type: [String], default: [] },
+    technologies: { type: [String], default: [] },
+    experienceKeywords: { type: [String], default: [] },
+  },
   interviewHistory: [{ type: Schema.Types.ObjectId, ref: 'Interview' }],
   createdAt: { type: Date, default: Date.now },
 });

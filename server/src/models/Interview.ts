@@ -3,6 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface IInterview extends Document {
   userId: mongoose.Types.ObjectId;
   domain: string;
+  level: string;
   questions: string[];
   answers: string[];
   transcripts: string[];
@@ -20,6 +21,7 @@ export interface IInterview extends Document {
 const InterviewSchema: Schema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   domain: { type: String, required: true },
+  level: { type: String, required: true, default: 'Intermediate' },
   questions: { type: [String], required: true },
   answers: { type: [String], default: [] },
   transcripts: { type: [String], default: [] },

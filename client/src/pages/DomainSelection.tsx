@@ -16,7 +16,7 @@ const DomainSelection = () => {
   const navigate = useNavigate();
 
   const handleSelect = (domainId: string) => {
-    navigate(`/interview/${domainId}`);
+    navigate('/skill-level', { state: { domain: domainId } });
   };
 
   return (

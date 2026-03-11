@@ -36,10 +36,27 @@ export const getUserStats = async (req: AuthRequest, res: Response): Promise<voi
       xp: user.xp,
       streak: user.streak,
       badges: user.badges,
-      level: user.level
+      level: user.level,
+      skillLevel: user.skillLevel
     };
     res.json(stats);
   } catch (error) {
     res.status(500).json({ message: 'Server error fetching stats' });
+  }
+};
+
+export const setSkillLevel = async (req: AuthRequest, res: Response): Promise<void> => {
+  const { skillLevel } = req.body;
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+    user.skillLevel = skillLevel;
+    await user.save();
+    res.json({ message: 'Skill level updated successfully', skillLevel });
+  } catch (error) {
+    res.status(500).json({ message: 'Error setting skill level' });
   }
 };
