@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-background: #0F0F14;
+  --color-brand-panel: #1A1A22;
+  --color-brand-primary: #FF5A3C;
+  --color-brand-secondary: #FF8A5B;
+  --color-brand-highlight: #FFB199;
+  --color-brand-success: #4ADE80;
+  --color-brand-text-primary: #FFFFFF;
+  --color-brand-text-secondary: #A1A1AA;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-background);
+    color: var(--color-brand-text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(to right, var(--color-brand-primary), var(--color-brand-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(to right, var(--color-brand-primary), var(--color-brand-secondary));
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(255, 90, 60, 0.4);
+  }
+
+  .glow-panel {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+}
