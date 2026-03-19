@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Mic, BarChart2, History, Trophy, LogOut } from 'lucide-react';
+import { LayoutDashboard, Mic, BarChart2, History, Trophy, LogOut, User, Settings, Users } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Sidebar = () => {
@@ -10,6 +10,9 @@ const Sidebar = () => {
     { path: '/dashboard', icon: <LayoutDashboard size={20} />, label: 'Dashboard' },
     { path: '/domain-selection', icon: <Mic size={20} />, label: 'Mock Interview' },
     { path: '/analytics', icon: <BarChart2 size={20} />, label: 'Analytics' },
+    { path: '/community', icon: <Users size={20} />, label: 'Community' },
+    { path: '/profile', icon: <User size={20} />, label: 'Profile' },
+    { path: '/settings', icon: <Settings size={20} />, label: 'Settings' },
   ];
 
   return (
@@ -25,15 +28,15 @@ const Sidebar = () => {
 
       <div className="px-4 mb-6">
         <div className="bg-[#0F0F14] p-3 rounded-xl border border-[#2A2A35] flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <NavLink to="/profile" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center font-bold text-white shadow-lg glow-primary">
               {user?.name?.charAt(0).toUpperCase()}
             </div>
             <div>
               <p className="text-sm font-semibold truncate w-24">{user?.name}</p>
-              <p className="text-xs text-[var(--color-brand-text-secondary)]">Level {"1"}</p>
+              <p className="text-xs text-[var(--color-brand-text-secondary)]">View Profile</p>
             </div>
-          </div>
+          </NavLink>
         </div>
       </div>
 

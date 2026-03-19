@@ -10,6 +10,7 @@ import aiRoutes from './routes/aiRoutes';
 import leaderboardRoutes from './routes/leaderboardRoutes';
 import questionRoutes from './routes/questionRoutes';
 import resumeRoutes from './routes/resumeRoutes';
+import communityRoutes from './routes/communityRoutes';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/resume', resumeRoutes);
+app.use('/api/community', communityRoutes);
 
 app.get('/', (req, res) => {
   res.send('InterviewX API is running...');

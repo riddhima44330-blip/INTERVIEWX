@@ -35,15 +35,20 @@ export const uploadResume = async (req: AuthRequest, res: Response): Promise<voi
 export const analyzeResume = async (req: AuthRequest, res: Response): Promise<void> => {
     const { text } = req.body;
     try {
-        // Mocking AI analysis extraction
-        const mockSkills = ['JavaScript', 'React', 'Node.js', 'MongoDB'];
-        const mockTech = ['TypeScript', 'Express', 'TailwindCSS'];
-        const mockExperience = ['Frontend Development', 'Web Applications'];
+        const lowerText = text.toLowerCase();
+        
+        const possibleSkills = ['javascript', 'react', 'node', 'mongodb', 'typescript', 'express', 'python', 'java', 'c++', 'sql', 'aws', 'docker', 'machine learning', 'data science'];
+        const possibleTech = ['html', 'css', 'tailwindcss', 'git', 'linux', 'kubernetes', 'redis', 'graphql', 'figma'];
+        const possibleExp = ['frontend', 'backend', 'fullstack', 'api', 'ui', 'ux', 'system design', 'agile', 'scrum'];
+        
+        const foundSkills = possibleSkills.filter(s => lowerText.includes(s)).map(s => s.charAt(0).toUpperCase() + s.slice(1));
+        const foundTech = possibleTech.filter(s => lowerText.includes(s)).map(s => s.charAt(0).toUpperCase() + s.slice(1));
+        const foundExp = possibleExp.filter(s => lowerText.includes(s)).map(s => s.charAt(0).toUpperCase() + s.slice(1));
 
         const resumeData = {
-            skills: mockSkills,
-            technologies: mockTech,
-            experienceKeywords: mockExperience
+            skills: foundSkills.length > 0 ? foundSkills : ['JavaScript', 'React'],
+            technologies: foundTech.length > 0 ? foundTech : ['Git', 'HTML/CSS'],
+            experienceKeywords: foundExp.length > 0 ? foundExp : ['Software Development']
         };
 
         const user = await User.findById(req.user._id);

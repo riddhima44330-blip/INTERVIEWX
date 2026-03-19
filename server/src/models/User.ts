@@ -9,6 +9,7 @@ export interface IUser extends Document {
   badges: string[];
   level: number;
   skillLevel?: string;
+  profileImage?: string;
   resumeData?: {
     skills: string[];
     technologies: string[];
@@ -27,6 +28,7 @@ const UserSchema: Schema = new Schema({
   badges: { type: [String], default: [] },
   level: { type: Number, default: 1 },
   skillLevel: { type: String }, // e.g., 'Beginner', 'Intermediate', 'Advanced'
+  profileImage: { type: String, default: '' },
   resumeData: {
     skills: { type: [String], default: [] },
     technologies: { type: [String], default: [] },
