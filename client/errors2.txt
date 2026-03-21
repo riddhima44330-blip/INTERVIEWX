@@ -1,0 +1,15 @@
+﻿src/components/Layout.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/components/Layout.tsx(1,17): error TS1484: 'ReactNode' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/Sidebar.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/Sidebar.tsx(3,43): error TS6133: 'History' is declared but its value is never read.
+src/components/Sidebar.tsx(3,52): error TS6133: 'Trophy' is declared but its value is never read.
+src/context/AuthContext.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/context/AuthContext.tsx(1,65): error TS1484: 'ReactNode' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/pages/Analytics.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/pages/Dashboard.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/pages/DomainSelection.tsx(45,10): error TS6133: 'selectedDomain' is declared but its value is never read.
+src/pages/Feedback.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/pages/InterviewRoom.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/pages/ProfilePage.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/pages/ResumeAnalysis.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/pages/SkillLevelSelection.tsx(1,8): error TS6133: 'React' is declared but its value is never read.

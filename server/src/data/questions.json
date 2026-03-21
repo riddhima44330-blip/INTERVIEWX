@@ -1,0 +1,86 @@
+{
+  "Frontend": {
+    "Beginner": [
+      { "question": "What is HTML?", "options": ["A. Programming language", "B. Markup language", "C. Database", "D. OS"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["structure", "markup", "web page"] },
+      { "question": "What is React?", "options": ["A. A database", "B. A frontend library", "C. A backend framework", "D. An operating system"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["component", "ui", "library"] }
+    ],
+    "Intermediate": [
+      { "question": "What does useEffect do?", "options": ["A. Manage state", "B. Handle side effects", "C. Render UI", "D. Create routes"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["side effects", "lifecycle", "dependency"] },
+      { "question": "Which hook is used for local state?", "options": ["A. useMemo", "B. useState", "C. useRef", "D. useReducer"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["state", "re-render", "hook"] }
+    ],
+    "Advanced": [
+      { "question": "What problem does code splitting solve?", "options": ["A. Styling issue", "B. Large bundle size", "C. Database locks", "D. DNS failures"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["performance", "lazy loading", "bundle"] },
+      { "question": "Which strategy improves render performance most for huge lists?", "options": ["A. DOM cloning", "B. Virtualization", "C. setInterval", "D. Inline CSS"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["virtualization", "windowing", "memory"] }
+    ]
+  },
+  "Backend": {
+    "Beginner": [
+      { "question": "What is Express.js?", "options": ["A. Frontend tool", "B. Node.js framework", "C. Database", "D. CSS library"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["framework", "routing", "middleware"] },
+      { "question": "Which HTTP method is commonly used to create data?", "options": ["A. GET", "B. POST", "C. DELETE", "D. OPTIONS"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["create", "post", "request body"] }
+    ],
+    "Intermediate": [
+      { "question": "What is middleware in Express?", "options": ["A. DB model", "B. Function in request-response cycle", "C. Frontend plugin", "D. CSS preprocessor"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["next", "pipeline", "cross-cutting"] },
+      { "question": "What is JWT used for?", "options": ["A. Styling", "B. Authentication token", "C. SQL joins", "D. Docker image"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["token", "auth", "claims"] }
+    ],
+    "Advanced": [
+      { "question": "What is idempotency in API design?", "options": ["A. Fast response", "B. Same result on repeated requests", "C. Encrypted payload", "D. Database indexing"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["repeat safety", "same effect", "api design"] },
+      { "question": "Why use message queues in backend architecture?", "options": ["A. Better CSS", "B. Async decoupling", "C. Browser caching", "D. SQL migration"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["asynchronous", "decoupling", "scalability"] }
+    ]
+  },
+  "Data Science": {
+    "Beginner": [
+      { "question": "What is Pandas?", "options": ["A. Animal", "B. Python library", "C. Database", "D. OS"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["dataframe", "python", "analysis"] },
+      { "question": "What is data normalization?", "options": ["A. Random shuffle", "B. Scaling values to common range", "C. Data deletion", "D. Encryption"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["scaling", "preprocessing", "range"] }
+    ],
+    "Intermediate": [
+      { "question": "Which metric is best for imbalanced classification?", "options": ["A. Accuracy only", "B. F1 score", "C. Mean error", "D. R2 only"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["precision", "recall", "imbalance"] },
+      { "question": "What does train-test split prevent?", "options": ["A. Styling bugs", "B. Data leakage and overfitting risk", "C. API timeout", "D. SQL injection"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["generalization", "evaluation", "leakage"] }
+    ],
+    "Advanced": [
+      { "question": "What is cross-validation used for?", "options": ["A. Security", "B. Robust model evaluation", "C. Frontend rendering", "D. API versioning"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["k-fold", "stability", "model selection"] },
+      { "question": "What is feature drift?", "options": ["A. UI lag", "B. Distribution shift over time", "C. SQL syntax", "D. Memory leak"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["distribution", "monitoring", "retraining"] }
+    ]
+  },
+  "AI/ML": {
+    "Beginner": [
+      { "question": "What is supervised learning?", "options": ["A. Learning without data", "B. Learning with labeled data", "C. Random learning", "D. Manual coding"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["labeled data", "training", "prediction"] },
+      { "question": "What is a model in ML?", "options": ["A. UI component", "B. Learned mathematical function", "C. Database table", "D. CSS class"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["learned patterns", "mapping", "inference"] }
+    ],
+    "Intermediate": [
+      { "question": "What does overfitting mean?", "options": ["A. Better generalization", "B. Model memorizes training data", "C. Faster API", "D. Data compression"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["train performance", "test drop", "regularization"] },
+      { "question": "What is precision in classification?", "options": ["A. TP/(TP+FP)", "B. TP/(TP+FN)", "C. (TP+TN)/All", "D. FN/TP"], "correctAnswer": "A", "difficulty": "Intermediate", "expectedAnswerPoints": ["false positives", "precision formula", "quality"] }
+    ],
+    "Advanced": [
+      { "question": "What does temperature control in LLM decoding?", "options": ["A. Model size", "B. Output randomness", "C. Token length", "D. Dataset size"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["randomness", "creativity", "sampling"] },
+      { "question": "What is RAG mainly used for?", "options": ["A. CSS optimization", "B. Grounding responses with external context", "C. SQL indexing", "D. Audio compression"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["retrieval", "grounded answers", "context injection"] }
+    ]
+  },
+  "System Design": {
+    "Beginner": [
+      { "question": "What is load balancing?", "options": ["A. Storing data", "B. Distributing traffic", "C. Encrypting data", "D. Coding"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["traffic distribution", "availability", "scaling"] },
+      { "question": "What is caching?", "options": ["A. Permanent storage", "B. Temporary fast-access storage", "C. Message queue", "D. Version control"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["latency", "hit rate", "fast reads"] }
+    ],
+    "Intermediate": [
+      { "question": "Why use database replication?", "options": ["A. Better colors", "B. Read scaling and high availability", "C. Smaller images", "D. Fewer APIs"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["availability", "read scaling", "redundancy"] },
+      { "question": "What is eventual consistency?", "options": ["A. Immediate global consistency", "B. Data becomes consistent over time", "C. No consistency", "D. SQL joins"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["distributed systems", "trade-off", "latency"] }
+    ],
+    "Advanced": [
+      { "question": "What is sharding?", "options": ["A. UI routing", "B. Horizontal partitioning of data", "C. CSS framework", "D. Tokenization"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["horizontal scaling", "partition key", "data distribution"] },
+      { "question": "Which pattern helps handle distributed transactions?", "options": ["A. Saga pattern", "B. MVC", "C. Observer", "D. Singleton"], "correctAnswer": "A", "difficulty": "Advanced", "expectedAnswerPoints": ["compensation", "workflow", "consistency"] }
+    ]
+  },
+  "Behavioural": {
+    "Beginner": [
+      { "question": "How do you handle conflict?", "options": ["A. Ignore", "B. Communicate and resolve", "C. Escalate always", "D. Quit"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["communication", "empathy", "resolution"] },
+      { "question": "What do you do when you miss a deadline?", "options": ["A. Hide it", "B. Communicate early and replan", "C. Blame team", "D. Stop work"], "correctAnswer": "B", "difficulty": "Beginner", "expectedAnswerPoints": ["accountability", "proactive communication", "plan"] }
+    ],
+    "Intermediate": [
+      { "question": "How do you prioritize multiple urgent tasks?", "options": ["A. Random choice", "B. Impact-effort and stakeholder alignment", "C. Do easiest first always", "D. Delay all"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["prioritization", "impact", "stakeholders"] },
+      { "question": "How do you give constructive feedback?", "options": ["A. Public criticism", "B. Specific, respectful, actionable input", "C. No feedback", "D. Escalate"], "correctAnswer": "B", "difficulty": "Intermediate", "expectedAnswerPoints": ["specific", "respectful", "actionable"] }
+    ],
+    "Advanced": [
+      { "question": "How do you influence without authority?", "options": ["A. Command others", "B. Build trust with data and collaboration", "C. Ignore team", "D. Escalate immediately"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["influence", "trust", "alignment"] },
+      { "question": "How do you handle disagreement on architecture decisions?", "options": ["A. Force preference", "B. Use ADRs, experiments, and consensus", "C. Quit meeting", "D. Ignore impact"], "correctAnswer": "B", "difficulty": "Advanced", "expectedAnswerPoints": ["trade-offs", "consensus", "decision records"] }
+    ]
+  }
+}

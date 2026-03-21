@@ -23,8 +23,20 @@ export const uploadResume = async (req: AuthRequest, res: Response): Promise<voi
         extractedText = buffer.toString('utf-8');
     }
 
+    // Extract skills and detect level
+    const lowerText = extractedText.toLowerCase();
+    const possibleSkills = ['javascript', 'react', 'node', 'mongodb', 'typescript', 'express', 'python', 'java', 'c++', 'sql', 'aws', 'docker', 'machine learning', 'data science', 'system design'];
+    const extractedSkills = possibleSkills.filter(s => lowerText.includes(s)).map(s => s.charAt(0).toUpperCase() + s.slice(1));
+    
+    let detectedLevel = 'Beginner';
+    if (extractedSkills.length >= 5) {
+      detectedLevel = 'Advanced';
+    } else if (extractedSkills.length >= 2) {
+      detectedLevel = 'Intermediate';
+    }
+
     // Save initial raw text or proceed to analyze. Let's send the text back, then the client calls analyze.
-    res.json({ message: 'Resume uploaded successfully', text: extractedText });
+    res.json({ message: 'Resume uploaded successfully', text: extractedText, extractedSkills, detectedLevel });
 
   } catch (error) {
     console.error(error);
