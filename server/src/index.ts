@@ -9,7 +9,7 @@ import interviewRoutes from './routes/interviewRoutes';
 import aiRoutes from './routes/aiRoutes';
 import leaderboardRoutes from './routes/leaderboardRoutes';
 import questionRoutes from './routes/questionRoutes';
-import resumeRoutes from './routes/resumeRoutes';
+
 import communityRoutes from './routes/communityRoutes';
 
 dotenv.config();
@@ -26,12 +26,20 @@ connectDB();
 
 // Routes
 app.use('/api/auth', authRoutes);
+
+import testRoutes from './routes/testRoutes';
+
+// ADD THESE 4 LINES AFTER app.use('/api/auth', authRoutes);
+
+app.use('/api/test', testRoutes);
+app.use('/api/interview', interviewRoutes);
+
 app.use('/api/user', userRoutes);
 app.use('/api/interview', interviewRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/questions', questionRoutes);
-app.use('/api/resume', resumeRoutes);
+
 app.use('/api/community', communityRoutes);
 
 app.get('/', (req, res) => {

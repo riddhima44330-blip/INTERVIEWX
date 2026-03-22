@@ -12,60 +12,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.analyzeResume = exports.uploadResume = void 0;
-const User_1 = __importDefault(require("../models/User"));
-const pdfParse = require("pdf-parse");
+exports.uploadResume = void 0;
+const pdf_parse_1 = __importDefault(require("pdf-parse"));
 const fs_1 = __importDefault(require("fs"));
-const uploadResume = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        if (!req.file) {
-            res.status(400).json({ message: "No file uploaded. Use field name 'resume' with a PDF file." });
-            return;
+const path_1 = __importDefault(require("path"));
+const multerConfig_1 = require("../config/multerConfig");
+const resume_service_1 = require("../services/resume.service");
+exports.uploadResume = [
+    multerConfig_1.upload.single('resume'), // CRITICAL: Field name "resume"
+    (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            if (!req.file) {
+                return res.status(400).json({ error: 'No resume file uploaded' });
+            }
+            const filePath = path_1.default.join(__dirname, '../../../uploads', req.file.filename);
+            const dataBuffer = fs_1.default.readFileSync(filePath);
+            const pdfData = yield (0, pdf_parse_1.default)(dataBuffer);
+            const analysis = (0, resume_service_1.analyzeResume)(pdfData.text);
+            res.json({
+                success: true,
+                filePath: req.file.path,
+                filename: req.file.filename,
+                analysis
+            });
         }
-        const resumeFilePath = req.file.path;
-        const buffer = yield fs_1.default.promises.readFile(resumeFilePath);
-        const parsePdf = pdfParse;
-        const parsed = yield parsePdf(buffer);
-        const extractedText = parsed.text || '';
-        // Save initial raw text or proceed to analyze. Let's send the text back, then the client calls analyze.
-        res.json({ message: 'Resume uploaded successfully', text: extractedText, filePath: resumeFilePath });
-    }
-    catch (error) {
-        console.error(error);
-        if (error instanceof Error) {
-            res.status(500).json({ message: `Error processing resume: ${error.message}` });
+        catch (error) {
+            res.status(500).json({ error: error.message });
         }
-        else {
-            res.status(500).json({ message: 'Error processing resume' });
-        }
-    }
-});
-exports.uploadResume = uploadResume;
-const analyzeResume = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { text } = req.body;
-    try {
-        const lowerText = text.toLowerCase();
-        const possibleSkills = ['javascript', 'react', 'node', 'mongodb', 'typescript', 'express', 'python', 'java', 'c++', 'sql', 'aws', 'docker', 'machine learning', 'data science'];
-        const possibleTech = ['html', 'css', 'tailwindcss', 'git', 'linux', 'kubernetes', 'redis', 'graphql', 'figma'];
-        const possibleExp = ['frontend', 'backend', 'fullstack', 'api', 'ui', 'ux', 'system design', 'agile', 'scrum'];
-        const foundSkills = possibleSkills.filter(s => lowerText.includes(s)).map(s => s.charAt(0).toUpperCase() + s.slice(1));
-        const foundTech = possibleTech.filter(s => lowerText.includes(s)).map(s => s.charAt(0).toUpperCase() + s.slice(1));
-        const foundExp = possibleExp.filter(s => lowerText.includes(s)).map(s => s.charAt(0).toUpperCase() + s.slice(1));
-        const resumeData = {
-            skills: foundSkills.length > 0 ? foundSkills : ['JavaScript', 'React'],
-            technologies: foundTech.length > 0 ? foundTech : ['Git', 'HTML/CSS'],
-            experienceKeywords: foundExp.length > 0 ? foundExp : ['Software Development']
-        };
-        const user = yield User_1.default.findById(req.user._id);
-        if (user) {
-            user.resumeData = resumeData;
-            yield user.save();
-        }
-        res.json({ resumeData });
-    }
-    catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error analyzing resume' });
-    }
-});
-exports.analyzeResume = analyzeResume;
+    })
+];

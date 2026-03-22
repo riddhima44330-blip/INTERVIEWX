@@ -1,10 +1,9 @@
-import express from 'express';
-import { startPlacementTest, submitPlacementTest } from '../controllers/placementController';
-import { protect } from '../middleware/authMiddleware';
+import { Router } from 'express';
+import { startTest, submitTest } from '../controllers/testController';
 
-const router = express.Router();
+const router = Router();
 
-router.post('/start', protect, startPlacementTest);
-router.post('/submit', protect, submitPlacementTest);
+router.post('/start', startTest);
+router.post('/submit', submitTest);
 
 export default router;

@@ -1,7 +1,7 @@
 import { Response, Request } from 'express';
 import { AuthRequest } from '../middleware/authMiddleware';
 import User from '../models/User';
-
+import Interview from '../models/Interview';
 // For MVP, we provide mock AI responses. When adding OpenAI/Gemini, wire logic here.
 export const generateQuestions = async (req: AuthRequest, res: Response): Promise<void> => {
   const { domain } = req.body;
@@ -51,20 +51,82 @@ export const analyzeResponse = async (req: Request, res: Response): Promise<void
 
 export const generateFeedback = async (req: Request, res: Response): Promise<void> => {
   try {
-    // Generate dummy score based on simple math for MVP
-    const mockFeedback = {
-      confidence: Math.floor(Math.random() * 30) + 70, // 70-100
-      communication: Math.floor(Math.random() * 30) + 65,
-      technical: Math.floor(Math.random() * 30) + 70,
-      clarity: Math.floor(Math.random() * 30) + 65,
-      suggestions: [
-        "Include more concrete examples",
-        "Pace yourself during difficult concepts"
-      ]
-    };
+    const { interviewId } = req.body;
+    const interview = await Interview.findById(interviewId);
     
-    setTimeout(() => res.json({ score: (mockFeedback.confidence + mockFeedback.technical) / 2, feedback: mockFeedback }), 2000);
+    if (!interview) {
+      res.status(404).json({ message: 'Interview not found' });
+      return;
+    }
+
+    let totalTechnical = 0;
+    let totalConfidence = 0;
+    let totalClarity = 0;
+    const answerCount = interview.answers.length || 1;
+
+    interview.answers.forEach((ans: string) => {
+      const answerLower = ans.toLowerCase();
+
+      // 1. Keywords Match (Technical)
+      let keywords: string[] = [];
+      if (interview.domain === 'frontend') keywords = ['ui', 'component', 'react', 'dom', 'state', 'props', 'render', 'html', 'css', 'javascript'];
+      else if (interview.domain === 'backend') keywords = ['server', 'api', 'database', 'middleware', 'request', 'response', 'node', 'express', 'rest'];
+      else if (interview.domain === 'data-science') keywords = ['data', 'model', 'analysis', 'python', 'set', 'feature', 'pandas', 'regression'];
+      else if (interview.domain === 'ai-ml') keywords = ['model', 'train', 'network', 'learning', 'data', 'algorithm', 'neural', 'deep'];
+      else if (interview.domain === 'system-design') keywords = ['scale', 'load', 'server', 'database', 'cache', 'balance', 'cdn', 'latency'];
+      else keywords = ['experience', 'team', 'challenge', 'project', 'goal', 'achieve', 'resolve', 'conflict'];
+
+      let keywordScore = 40; // Base score
+      keywords.forEach(kw => {
+        if (answerLower.includes(kw)) keywordScore += 15;
+      });
+      totalTechnical += Math.min(100, keywordScore);
+
+      // 2. Confidence Tone
+      const weakWords = ['maybe', 'not sure', 'i think', 'probably', 'guess', 'umm', 'uh'];
+      const strongWords = ['definitely', 'absolutely', 'crucial', 'important', 'always', 'exactly', 'confident'];
+      
+      let confidenceScore = 70; // Base score
+      weakWords.forEach(w => {
+        if (answerLower.includes(` ${w} `)) confidenceScore -= 10;
+      });
+      strongWords.forEach(w => {
+        if (answerLower.includes(` ${w} `)) confidenceScore += 10;
+      });
+      totalConfidence += Math.max(0, Math.min(100, confidenceScore));
+
+      // 3. Clarity of explanation (Length & generic filler check)
+      let clarityScore = ans.length > 50 ? 80 : 50;
+      if (ans.length > 150) clarityScore += 10;
+      const fillers = ['like', 'you know'];
+      fillers.forEach(f => {
+        if (answerLower.includes(` ${f} `)) clarityScore -= 5;
+      });
+      totalClarity += Math.max(0, Math.min(100, clarityScore));
+    });
+
+    const avgTechnical = Math.round(totalTechnical / answerCount) || 50;
+    const avgConfidence = Math.round(totalConfidence / answerCount) || 50;
+    const avgClarity = Math.round(totalClarity / answerCount) || 50;
+    const communication = Math.round((avgConfidence + avgClarity) / 2);
+    const overallScore = Math.round((avgTechnical + avgConfidence + avgClarity) / 3);
+
+    const suggestions: string[] = [];
+    if (avgTechnical < 70) suggestions.push("Try to use more domain-specific technical terms to demonstrate expertise.");
+    if (avgConfidence < 70) suggestions.push("Avoid using filler words like 'umm' or 'maybe' to sound more confident.");
+    if (avgClarity < 70) suggestions.push("Provide more detailed and structured explanations.");
+    if (suggestions.length === 0) suggestions.push("Great job! Keep up the concise and confident explanations.");
+
+    const finalFeedback = {
+      confidence: avgConfidence,
+      communication,
+      technical: avgTechnical,
+      clarity: avgClarity,
+      suggestions
+    };
+
+    res.json({ score: overallScore, feedback: finalFeedback });
   } catch (error) {
-    res.status(500).json({ message: 'AI Error Generating Feedback' });
+    res.status(500).json({ message: 'Error Generating Feedback' });
   }
 };

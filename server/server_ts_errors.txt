@@ -1,0 +1,13 @@
+src/config/multerConfig.ts(22,13): error TS2345: Argument of type 'Error' is not assignable to parameter of type 'null'.
+src/controllers/placementController.ts(17,42): error TS2339: Property 'detectedDomain' does not exist on type 'Document<unknown, {}, IUser, {}, {}> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/placementController.ts(49,12): error TS2339: Property 'placementTestScore' does not exist on type 'Document<unknown, {}, IUser, {}, {}> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/index.ts(8,8): error TS2300: Duplicate identifier 'interviewRoutes'.
+src/index.ts(31,8): error TS2300: Duplicate identifier 'interviewRoutes'.
+src/index.ts(37,36): error TS2304: Cannot find name 'path'.
+src/routes/interviewRoutes.ts(2,23): error TS2732: Cannot find module '../data/questions.json'. Consider using '--resolveJsonModule' to import module with '.json' extension.
+src/services/ai.service.ts(1,29): error TS2307: Cannot find module '@google/genai' or its corresponding type declarations.
+src/services/ai.service.ts(3,31): error TS2732: Cannot find module '../data/questions.json'. Consider using '--resolveJsonModule' to import module with '.json' extension.
+src/services/interview.service.ts(51,13): error TS2551: Property 'scores' does not exist on type 'Document<unknown, {}, IInterview, {}, {}> & IInterview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'score'?
+src/services/interview.service.ts(52,13): error TS2339: Property 'answerFeedback' does not exist on type 'Document<unknown, {}, IInterview, {}, {}> & IInterview & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/services/interview.service.ts(63,17): error TS2339: Property 'skills' does not exist on type 'Document<unknown, {}, IInterview, {}, {}> & IInterview & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/services/interview.service.ts(75,15): error TS2339: Property 'currentRound' does not exist on type 'Document<unknown, {}, IInterview, {}, {}> & IInterview & Required<{ _id: ObjectId; }> & { __v: number; }'.

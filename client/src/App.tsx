@@ -9,8 +9,7 @@ import InterviewRoom from './pages/InterviewRoom';
 import Feedback from './pages/Feedback';
 import Analytics from './pages/Analytics';
 import SkillLevelSelection from './pages/SkillLevelSelection';
-import ResumeUpload from './pages/ResumeUpload';
-import ResumeAnalysis from './pages/ResumeAnalysis';
+
 import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
 import CommunityPage from './pages/CommunityPage';
@@ -77,22 +76,7 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/resume-upload"
-        element={
-          <ProtectedRoute>
-            <ResumeUpload />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/resume-analysis"
-        element={
-          <ProtectedRoute>
-            <ResumeAnalysis />
-          </ProtectedRoute>
-        }
-      />
+
       <Route
         path="/profile"
         element={

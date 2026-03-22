@@ -1,11 +1,12 @@
-import express from 'express';
+import { Router } from 'express';
 import { startInterview, answerQuestion, finishInterview } from '../controllers/interviewController';
 import { protect } from '../middleware/authMiddleware';
 
-const router = express.Router();
+const router = Router();
 
-router.post('/start', protect, startInterview);
-router.post('/answer', protect, answerQuestion);
-router.post('/finish', protect, finishInterview);
+router.use(protect);
+router.post('/start', startInterview);
+router.post('/answer', answerQuestion);
+router.post('/finish', finishInterview);
 
 export default router;

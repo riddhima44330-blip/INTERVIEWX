@@ -42,6 +42,13 @@ const UserSchema = new mongoose_1.Schema({
     streak: { type: Number, default: 0 },
     badges: { type: [String], default: [] },
     level: { type: Number, default: 1 },
+    skillLevel: { type: String }, // e.g., 'Beginner', 'Intermediate', 'Advanced'
+    profileImage: { type: String, default: '' },
+    resumeData: {
+        skills: { type: [String], default: [] },
+        technologies: { type: [String], default: [] },
+        experienceKeywords: { type: [String], default: [] },
+    },
     interviewHistory: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Interview' }],
     createdAt: { type: Date, default: Date.now },
 });

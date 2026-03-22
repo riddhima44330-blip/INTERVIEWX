@@ -49,12 +49,6 @@ const Dashboard = () => {
         </div>
         <div className="flex gap-4">
           <button 
-            onClick={() => navigate('/resume-upload')}
-            className="bg-[var(--color-brand-panel)] border border-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)]/10 text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 transform transition hover:scale-105"
-          >
-            Upload Resume
-          </button>
-          <button 
             onClick={() => navigate('/domain-selection')}
             className="bg-gradient-primary hover:opacity-90 text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 transform transition hover:scale-105 shadow-lg glow-primary"
           >

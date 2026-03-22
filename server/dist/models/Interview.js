@@ -37,6 +37,7 @@ const mongoose_1 = __importStar(require("mongoose"));
 const InterviewSchema = new mongoose_1.Schema({
     userId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
     domain: { type: String, required: true },
+    level: { type: String, required: true, default: 'Intermediate' },
     questions: { type: [String], required: true },
     answers: { type: [String], default: [] },
     transcripts: { type: [String], default: [] },
